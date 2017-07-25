@@ -1,0 +1,9 @@
+login:
+  battlenet_enabled:
+    default: false
+    client: true
+  battlenet_client_id: ''
+  battlenet_client_secret: ''
+  battlenet_button_title:
+    default: 'with Battle.net'
+    client: true
