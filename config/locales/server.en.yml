@@ -1,0 +1,6 @@
+en:
+  site_settings:
+    battlenet_enabled: "Enable login via Battle.net."
+    battlenet_client_id: 'Application Key for Battle.net app. Visit <a href="https://dev.battle.net/">https://dev.battle.net/</a> to make an app if needed.'
+    battlenet_client_secret: 'Application Secret for Battle.net app. Found at <a href="https://dev.battle.net/">https://dev.battle.net/</a>.'
+    battlenet_button_title: "Text on the login button."
