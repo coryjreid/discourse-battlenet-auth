@@ -1,10 +1,12 @@
 # name: discourse-battlenet-auth
 # about: Discourse plugin to allow login via Battle.net
-# version: 1.0.0
+# version: 1.0.1
 # authors: Cory J. Reid
 # url: https://github.com/coryjreid/discourse-battlenet-auth
 
 gem 'omniauth-bnet', '1.1.1'
+
+enabled_site_setting :battlenet_enabled
 
 class BattleNetAuthenticator < ::Auth::Authenticator
 
@@ -40,9 +42,15 @@ class BattleNetAuthenticator < ::Auth::Authenticator
 
   def register_middleware(omniauth)
     omniauth.provider :bnet,
-     SiteSetting.battlenet_client_id,
-     SiteSetting.battlenet_client_secret
-    
+                      name: 'bnet',
+                      setup: lambda {|env|
+                        opts = env['omniauth.strategy'].options
+                        opts[:client_id] = SiteSetting.battlenet_client_id
+                        opts[:client_secret] = SiteSetting.battlenet_client_secret
+                        opts[:provider_ignores_state] = false
+                        opts[:token_params] = {headers: {'Authorization' => 
+                          "Basic " + Base64.strict_encode64("#{SiteSetting.battlenet_client_id}:#{SiteSetting.battlenet_client_secret}") }}
+                      }
     # correct the host in development, leave commented in production! 
     # OmniAuth.config.full_host = "https://disctest"
   end
