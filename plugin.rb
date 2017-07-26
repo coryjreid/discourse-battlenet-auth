@@ -1,6 +1,6 @@
 # name: discourse-battlenet-auth
 # about: Discourse plugin to allow login via Battle.net
-# version: 1.0.0
+# version: 1.0.1
 # authors: Cory J. Reid
 # url: https://github.com/coryjreid/discourse-battlenet-auth
 
